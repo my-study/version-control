@@ -1,0 +1,10 @@
+/build-condition-01.xml
+/build-condition-02-istrue-isfalse.xml
+/build-condition-03-not.xml
+/build-condition-04-and.xml
+/build-condition-05-or-xor.xml
+/build-condition-06-isset.xml
+/build-condition-07-equals.xml
+/build-condition-08-filesmatch.xml
+/testfile1.txt
+/testfile2.txt

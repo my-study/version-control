@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 逻辑运算: not 逻辑非  -->
+<project name="study-version-ant-demo01-build-condition-03-not" default="test">
+	<target name="test">
+		<condition property="cond">
+			<not>
+				<istrue value="true"/>
+			</not>
+		</condition>
+		<antcall target="isTrue"/> <!-- 调用target[name="isTrue"] -->
+		<antcall target="isFalse"/>  <!-- 调用target[name="isFalse"] -->
+	</target>
+	
+	<target name="isTrue" if="cond">
+		<echo>is true</echo>
+	</target>
+	
+	<target name="isFalse" unless="cond"> <!-- unless: 当属性cond没有设置时才执行-->
+		<echo>is false</echo>
+	</target>
+</project>

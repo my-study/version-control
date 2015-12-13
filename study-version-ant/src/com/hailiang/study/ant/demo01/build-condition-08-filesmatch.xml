@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- filesmatch 比较文件      -->
+<project name="study-version-ant-demo01-build-condition-08-filesmatch" default="test">
+	<target name="test">
+		<condition property="cond">
+			<!-- 如果file1所代表的文件的内容与file2所代表文件的内容相等返回true，否则为false -->
+			<filesmatch file1="testfile1.txt" file2="testfile2.txt"/>
+		</condition>
+		<antcall target="isTrue"/> <!-- 调用target[name="isTrue"] -->
+		<antcall target="isFalse"/> <!-- 调用target[name="isFalse"] -->
+	</target>
+	
+	<target name="isTrue" if="cond">
+		<echo>is true</echo>
+	</target>
+	
+	<target name="isFalse" unless="cond">
+		<echo>is false</echo>
+	</target>
+</project>

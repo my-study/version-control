@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="study-version-ant-demo02-build-avaliable-02-classpath" basedir="." default="test">
+	<available property="clazz-value01" classname="java.lang.String"/>
+	
+	<!-- 将jibx-bind-1.2.6.jar指定为到classpath路径中 -->
+	<property name="jibx-bind.jar" value="${basedir}/jibx-bind-1.2.6.jar"></property>
+	<path id="jibx" location="${jibx-bind.jar}"></path>
+	<!-- 即将jibx这个claspath中找到org.jibx.binding.BindingGenerator类时，将classpath-value01的值设为默认值(true) -->
+	<available property="classpath-value01" classpathref="jibx" classname="org.jibx.binding.BindingGenerator"/>
+	
+	<target name="test">
+		<echo>${clazz-value01}</echo> <!-- 输出：true -->
+		<echo>${classpath-value01}</echo> <!-- 输出：true -->
+	</target>
+	
+</project>

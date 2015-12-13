@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 逻辑运算: and 逻辑与   -->
+<project name="study-version-ant-demo01-build-condition-04-and" default="test">
+	<target name="test">
+		<condition property="cond">
+			<and>
+				<istrue value="true"/>
+				<istrue value="false"/>
+			</and>
+		</condition>
+		<antcall target="isTrue"/> <!-- 调用target[name="isTrue"] -->
+		<antcall target="isFalse"/>  <!-- 调用target[name="isFalse"] -->
+	</target>
+	
+	<target name="isTrue" if="cond">
+		<echo>is true</echo>
+	</target>
+	
+	<target name="isFalse" unless="cond">
+		<echo>is false</echo>
+	</target>
+</project>

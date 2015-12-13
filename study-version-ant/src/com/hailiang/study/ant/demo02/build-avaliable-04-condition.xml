@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	测试方法：
+		1. 创建C:/test/123.txt文件，且创建文件路径C:/test/lib
+		2. 改变<available property="user-home" value="available-value" file=""/>中的file的值
+			2.1. 将file的值设为C:/test/123.txt， 运行ant文件，输出值为available-value
+			2.2. 将file的值设为C:/test/abc.txt， 运行ant文件，输出值为condition-value
+		由于C:/test/123.txt是存在的，而C:/test/abc.txt文件时不存在的
+-->
+<project name="study-version-ant-demo02-build-avaliable-01" basedir="." default="test">
+	<!-- 如果file指定的文件C:/test/123.txt存在，则设置属性user-home值为“available-value” -->
+	<available property="user-home" value="available-value" file="C:/test/123.txt"/>
+	
+	<!-- 如果属性user-home还没有被声明指定值，且file指定的文件路径C:/test/lib存在，则设置属性user-home值为“condition-value”  -->
+	<condition property="user-home" value="condition-value">
+		<and>
+			<not>
+				<isset property="user-home"/>
+			</not>
+			<available file="C:/test/lib"/>
+		</and>
+	</condition>
+	
+	<target name="test">
+		<echo>${user-home}</echo>
+	</target>
+</project>

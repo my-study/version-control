@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 逻辑运算: or逻辑，xor异或   -->
+<project name="study-version-ant-demo01-build-condition-05-or-xor" default="test">
+	<target name="test">
+		<condition property="cond">
+			<!--
+			<or>
+				<istrue value="true"/>
+				<istrue value="false"/>
+			</or>
+			-->
+			<xor>
+				<istrue value="true"/>
+				<istrue value="false"/>
+			</xor>
+		</condition>
+		<antcall target="isTrue"/> <!-- 调用target[name="isTrue"] -->
+		<antcall target="isFalse"/>  <!-- 调用target[name="isFalse"] -->
+	</target>
+	
+	<target name="isTrue" if="cond">
+		<echo>is true</echo>
+	</target>
+	
+	<target name="isFalse" unless="cond">
+		<echo>is false</echo>
+	</target>
+</project>

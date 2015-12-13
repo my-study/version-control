@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="study-version-ant-demo02-build-avaliable-01-file" basedir="." default="test">
+	<!-- 如果文件路径存在时，设置user-home01的值为true(即默认值) -->
+	<available property="user-home01" file="C:/test/123.txt"/>
+	<available property="user-home02" value="available-value" file="C:/test/123.txt"/>
+	
+	<available property="dir-value01" type="dir" file="C:/test"></available> <!-- c:/test是一个目录 -->
+	<available property="file-value01" type="file" file="C:/test"></available> <!-- c:/test是一个目录 -->
+	
+		
+	<target name="test">
+		<echo>${user-home01}</echo> <!-- 输出：true -->
+		<echo>${user-home02}</echo> <!-- 输出：available-value -->
+		<echo>${dir-value01}</echo> <!-- 输出：available-value -->
+		<echo>${file-value01}</echo> <!-- 输出：${file-value01} -->
+	</target>
+	
+</project>

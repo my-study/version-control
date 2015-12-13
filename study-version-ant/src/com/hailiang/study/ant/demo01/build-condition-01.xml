@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  project标签
+  	用途：所有其它ant命令的包裹标签，和当前工程对应
+  	属性：
+  		name:	 工程名
+  		basedir: 默认调用的target名
+  		default: 项目根目录的相对路径(相对于当前ant文件)
+-->
+<project name="study-version-ant-demo01-build-condition-01" basedir="." default="help">
+	<!-- 判断文件C:/test/123.txt是否存在，若存在，则fileIsExists设为true -->
+	<target name="detect.file">
+		<condition property="fileIsExists">
+			<and>
+				<available file="C:/test/123.txt"/>
+			</and>
+		</condition>
+	</target>
+	
+	<!-- 
+		echoDemo这个task，在执行前会先判断fileIsExists是否为true，如果不为true就不执行了，
+		如果C:/test/123.txt存在则打印"hell ant", 否则就不会打印了
+	-->
+	<target name="echoDemo01" if="fileIsExists" depends="detect.file">
+		<echo message="fileIsExists hello ant"/>
+	</target>
+	
+	<!-- 可以使用antcall替代depends -->
+	<target name="help">
+		<antcall target="echoDemo01"/>
+	</target>
+</project>

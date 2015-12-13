@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- istrue isfalse:断言 真 假  -->
+<project name="study-version-ant-demo01-build-condition-02-istrue-isfalse" default="test">
+	<target name="test">
+		<condition property="cond">
+			<istrue value="true"/>
+		</condition>
+		<antcall target="isTrue"/> <!-- 调用target[name="isTrue"] -->
+		<antcall target="isFalse"/>  <!-- 调用target[name="isFalse"] -->
+		<antcall target="propertyNotExist"/>  <!-- 调用target[name="propertyNotExist"] -->
+	</target>
+	
+	<target name="isTrue" if="cond">
+		<echo>is true</echo>
+	</target>
+	
+	<target name="isFalse" unless="cond"> <!-- unless: 当属性cond没有设置时才执行-->
+		<echo>is false</echo>
+	</target>
+	
+	<target name="propertyNotExist" unless="ab123cd"> <!-- unless: 当属性ab123cd没有设置时才执行-->
+		<echo>'ab123cd' property not exist</echo>
+	</target>
+</project>

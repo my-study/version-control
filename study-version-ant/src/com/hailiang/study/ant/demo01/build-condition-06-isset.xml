@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- isset 指定属性是否存在    -->
+<project name="study-version-ant-demo01-build-condition-06-isset" default="test">
+	<!-- 属性也可以通过ant参数 -D来设置 -->
+	<property name="username" value="hailiang.jiang"/>
+	<target name="test">
+		<condition property="cond">
+			<isset property="username"/> <!--如果属性username不存在则返回false-->
+		</condition>
+		<antcall target="isTrue"/> <!-- 调用target[name="isTrue"] -->
+		<antcall target="isFalse"/> <!-- 调用target[name="isFalse"] -->
+	</target>
+	
+	<target name="isTrue" if="cond">
+		<echo>is true</echo>
+	</target>
+	
+	<target name="isFalse" unless="cond">
+		<echo>is false</echo>
+	</target>
+</project>

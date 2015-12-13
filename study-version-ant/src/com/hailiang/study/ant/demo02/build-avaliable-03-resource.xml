@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="study-version-ant-demo02-build-avaliable-03-resource" basedir="." default="test">
+	<!-- 
+		在jibx-bind-1.2.6.jar中根路径中，新增一个test.properties文件后，然后使用如下配置
+		说明：
+			当在jvm的资源中(jibx-bind-1.2.6.jar)找到了test.properties文件，则设置res-value01的值为默认值(即：true)
+	-->
+	<available property="res-value01" resource="test.properties">
+		<classpath>
+			<pathelement location="/${basedir}/jibx-bind-1.2.6.jar"/>
+		</classpath>
+	</available>
+	
+	<target name="test">
+		<echo>${res-value01}</echo>
+	</target>
+	
+</project>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- equals 是否相等     -->
+<project name="study-version-ant-demo01-build-condition-07-equals" default="test">
+	<!-- 属性也可以通过ant参数 -D来设置 -->
+	<property name="username" value="hailiang.jiang"/>
+	<target name="test">
+		<condition property="cond">
+			<equals arg1="${username}" arg2="hailiang.jiang"/> <!--如果arg1的值与arg2的值相等返回true，否则为false-->
+		</condition>
+		<antcall target="isTrue"/> <!-- 调用target[name="isTrue"] -->
+		<antcall target="isFalse"/> <!-- 调用target[name="isFalse"] -->
+	</target>
+	
+	<target name="isTrue" if="cond">
+		<echo>is true</echo>
+	</target>
+	
+	<target name="isFalse" unless="cond">
+		<echo>is false</echo>
+	</target>
+</project>
