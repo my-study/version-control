@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 输出自定义的path路径 -->
+<project name="study-version-ant-demo03-build-classpath-01-echo" basedir="." default="test">
+	<property environment="env"></property>
+	<!-- project.dir指定项目所在的路径 -->
+	<property name="project.dir" value="E:/workspace/code-github/version-control/study-version-ant"></property>
+	<property name="lib.dir" value="${project.dir}/lib"></property>
+	
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="test">
+		<property name="myclasspath" refid="project.classpath"></property>
+		<echo message="classpath = ${myclasspath}"/>
+	</target>
+</project>
